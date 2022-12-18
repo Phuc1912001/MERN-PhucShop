@@ -36,6 +36,29 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   }
 });
 
+// update user
+const updateaUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updateaUser = await User.findByIdAndUpdate(
+      id,
+      {
+        // thay firstname đã update vào cái first ban đầu của user có id trên
+        firstname: req?.body?.firstname,
+        lastname: req?.body?.lastname,
+        email: req?.body?.email,
+        mobile: req?.body?.mobile,
+      },
+      {
+        new: true,
+      }
+    );
+    res.json(updateaUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 // get all user
 const getallUser = asyncHandler(async (req, res) => {
   try {
@@ -47,10 +70,36 @@ const getallUser = asyncHandler(async (req, res) => {
 });
 
 // get a signUser
-
-const getUser = asyncHandler(async (req, res) => {
+const getaUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  try {
+    const getaUser = await User.findById(id);
+    res.json({
+      getaUser,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
-module.exports = { createUser, loginUserCtrl, getallUser, getUser };
+// delete user
+const deleteaUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteaUser = await User.findByIdAndDelete(id);
+    res.json({
+      deleteaUser,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+module.exports = {
+  createUser,
+  loginUserCtrl,
+  getallUser,
+  getaUser,
+  deleteaUser,
+  updateaUser,
+};
