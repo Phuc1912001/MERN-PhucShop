@@ -25,9 +25,19 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "user",
+  },
 });
 
-
-
+userSchema.pre("save", async function (next) {
+  const salt = bcrypt.genSaltSync(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+// nếu mk khớp nhau thì trả về true , nếu k thì trả về false
+userSchema.methods.isPasswordMatched = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 //Export the model
 module.exports = mongoose.model("User", userSchema);
