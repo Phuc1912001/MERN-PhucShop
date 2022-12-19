@@ -6,7 +6,9 @@ const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const app = express();
 const dotenv = require("dotenv").config();
 const PORT = process.env.PORT || 4000;
+
 const authRouter = require("./routes/authRoute");
+const productRouter = require("./routes/productRoute");
 
 // kết nối với database
 dbConnect();
@@ -17,6 +19,7 @@ app.use(cookieParser());
 
 // tuyến đường
 app.use("/api/user", authRouter);
+app.use("/api/product", productRouter);
 
 app.use(notFound);
 app.use(errorHandler);
