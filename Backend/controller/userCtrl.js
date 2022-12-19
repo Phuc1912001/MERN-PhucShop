@@ -36,14 +36,15 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   }
 });
 
-// update user
-const updateaUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+// Update a user
+
+const updatedUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+
   try {
-    const updateaUser = await User.findByIdAndUpdate(
-      id,
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
       {
-        // thay firstname đã update vào cái first ban đầu của user có id trên
         firstname: req?.body?.firstname,
         lastname: req?.body?.lastname,
         email: req?.body?.email,
@@ -53,12 +54,11 @@ const updateaUser = asyncHandler(async (req, res) => {
         new: true,
       }
     );
-    res.json(updateaUser);
+    res.json(updatedUser);
   } catch (error) {
     throw new Error(error);
   }
 });
-
 // get all user
 const getallUser = asyncHandler(async (req, res) => {
   try {
@@ -95,11 +95,16 @@ const deleteaUser = asyncHandler(async (req, res) => {
   }
 });
 
+const blockUser = asyncHandler(async (req, res) => {});
+const unblockUser = asyncHandler(async (req, res) => {});
+
 module.exports = {
   createUser,
   loginUserCtrl,
   getallUser,
   getaUser,
   deleteaUser,
-  updateaUser,
+  updatedUser,
+  blockUser,
+  unblockUser,
 };
