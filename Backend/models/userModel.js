@@ -38,8 +38,16 @@ var userSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    address: [{ type: mongoose.Schema.ObjectId, ref: "Address" }],
-    wishList: [{ type: mongoose.Schema.ObjectId, ref: "Product" }],
+    address: {
+      type: String,
+    },
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    refreshToken: {
+      type: String,
+    },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
   },
   {
     timestamps: true,
