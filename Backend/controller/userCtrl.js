@@ -1,9 +1,10 @@
 const User = require("../models/userModel");
+
 const asyncHandler = require("express-async-handler");
 const { generateToken } = require("../config/jwtToken");
-const validateMongoDbId = require("../utils/validateMongodbld");
-const jwt = require("jsonwebtoken");
+const validateMongoDbId = require("../utils/validateMongodbId");
 const { generateRefreshToken } = require("../config/refreshtoken");
+const jwt = require("jsonwebtoken");
 
 // register user
 const createUser = asyncHandler(async (req, res) => {
@@ -54,6 +55,8 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 
 // handle refresh token
 
+// handle refresh token
+
 const handleRefreshToken = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) throw new Error("No Refresh Token in Cookies");
@@ -68,6 +71,9 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
     res.json({ accessToken });
   });
 });
+
+// logout functionality
+const logout = asyncHandler(async (req, res) => {});
 
 // Update a user
 
@@ -175,4 +181,5 @@ module.exports = {
   blockUser,
   unblockUser,
   handleRefreshToken,
+  logout,
 };
