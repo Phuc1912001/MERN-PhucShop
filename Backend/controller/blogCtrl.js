@@ -72,9 +72,10 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 });
 
-// like blog
+// like blog đây là code like và không like
 
 const liketheBlog = asyncHandler(async (req, res) => {
+    // lấy id của blog từ body
   const { blogId } = req.body;
   validateMongoDbId(blogId);
   // Find the blog which you want to be liked
