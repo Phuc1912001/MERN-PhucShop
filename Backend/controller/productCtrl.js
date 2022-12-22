@@ -2,6 +2,9 @@ const Product = require("../models/productModel");
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
+const validateMongoDbId = require("../utils/validateMongodbId");
+const cloudinaryUploadImg = require("../utils/cloudinary");
+const fs = require("fs");
 
 // tạo sản phâm
 const createProduct = asyncHandler(async (req, res) => {
@@ -20,7 +23,7 @@ const createProduct = asyncHandler(async (req, res) => {
 // cập nhập sản phâm
 const updateProduct = asyncHandler(async (req, res) => {
   const id = req.params;
-
+  validateMongoDbId(id);
   try {
     if (req.body.title) {
       req.body.slug = slugify(req.body.title);
@@ -37,7 +40,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 // xoá sản phẩm
 const deleteProduct = asyncHandler(async (req, res) => {
   const id = req.params;
-
+  validateMongoDbId(id);
   try {
     const deleteProduct = await Product.findOneAndDelete(id);
     res.json(deleteProduct);
@@ -49,6 +52,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // lấy ra 1 sản phẩm
 const getaProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  validateMongoDbId(id);
   try {
     const findProduct = await Product.findById(id);
     res.json(findProduct);
@@ -198,6 +202,38 @@ const rating = asyncHandler(async (req, res) => {
   }
 });
 
+const uploadImages = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  console.log(req.files);
+  try {
+    const uploader = (path) => cloudinaryUploadImg(path, "images");
+    const urls = [];
+    const files = req.files;
+    for (const file of files) {
+      const { path } = file;
+      const newpath = await uploader(path);
+      console.log(newpath);
+      urls.push(newpath);
+      fs.unlinkSync(path);
+    }
+    const findProduct = await Product.findByIdAndUpdate(
+      id,
+      {
+        images: urls.map((file) => {
+          return file;
+        }),
+      },
+      {
+        new: true,
+      }
+    );
+    res.json(findProduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createProduct,
   getaProduct,
@@ -206,4 +242,5 @@ module.exports = {
   deleteProduct,
   addToWishlist,
   rating,
+  uploadImages,
 };
