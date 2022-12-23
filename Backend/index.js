@@ -37,5 +37,5 @@ app.use(notFound);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`server is running at port ${PORT}`);
+ console.log(`server is running at port ${PORT}`);
 });
