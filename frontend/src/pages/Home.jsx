@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
+import SpecialProduct from "../components/SpecialProduct";
 
 const Home = () => {
   return (
@@ -191,6 +192,110 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="feature-wrapper py-5 home-wrapper-2 ">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-12">
+              <h3 className="section-heading">Feature Collection</h3>
+            </div>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
+      </section>
+      <section className="famous-wrapper py-5 home-wrapper-2 ">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-3">
+              <div className="famous-card  position-relative ">
+                <img
+                  src="images/famous-5.png"
+                  className="img-fluid famous-image "
+                  alt="famous"
+                />
+                <div className="famous-content position-absolute ">
+                  <h5>Big Screen </h5>
+                  <h6> Smart Watch Series 8 </h6>
+                  <p>From $400 or %20%/mo. for 24 mo. </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-3">
+              <div className="famous-card  position-relative ">
+                <img
+                  src="images/famous-6.png"
+                  className="img-fluid famous-image "
+                  alt="famous"
+                />
+                <div className="famous-content position-absolute ">
+                  <h5 className="text-dark">Studio Display </h5>
+                  <h6 className="text-dark"> Laptop Apple MacBook Air M1</h6>
+                  <p className="text-dark"> 13-inch 4k Retina display </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-3">
+              <div className="famous-card  position-relative ">
+                <img
+                  src="images/famous-7.png"
+                  className="img-fluid famous-image "
+                  alt="famous"
+                />
+                <div className="famous-content position-absolute ">
+                  <h5 className="text-dark">Smart Phone</h5>
+                  <h6 className="text-dark"> Iphone 14 ProMax</h6>
+                  <p className="text-dark">From $1990 or $40/mo. for 24 mo. </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-3">
+              <div className="famous-card  position-relative ">
+                <img
+                  src="images/famous-8.png"
+                  className="img-fluid famous-image "
+                  alt="famous"
+                />
+                <div className="famous-content position-absolute ">
+                  <h5 className="text-dark">Home Speakers </h5>
+                  <h6 className="text-dark"> Room-filling Sound</h6>
+                  <p className="text-dark">
+                    From $1000 or $116/mo. for 24 mo.{" "}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="special-wrapper py-5 home-wrapper-2  ">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-12">
+              <h3 className="section-heading">Special Products</h3>
+            </div>
+            <SpecialProduct />
+            <SpecialProduct />
+            <SpecialProduct />
+            <SpecialProduct />
+          </div>
+        </div>
+      </section>
+      <section className="popular-wrapper py-5 home-wrapper-2 ">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-12">
+              <h3 className="section-heading">Our Popular Products</h3>
+            </div>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
+      </section>
       <section className="marque-wrapper home-wrapper-2  py-5">
         <div className="container-xxl">
           <div className="row">
@@ -224,20 +329,6 @@ const Home = () => {
                 </Marquee>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section className="blog-wrapper py-5 home-wrapper-2 ">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-12">
-              <h3 className="section-heading">Feature Collection</h3>
-            </div>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            
           </div>
         </div>
       </section>
