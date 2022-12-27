@@ -4,10 +4,14 @@ import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
+import Meta from "../components/Meta";
+import BreadCrumb from "../components/BreadCrumb";
 
 const Home = () => {
   return (
     <>
+      <Meta title="Home" />
+      <BreadCrumb title="Home" />
       <section className="home-wrapper-1 py-5">
         <div className="container-xxl">
           <div className="row">
