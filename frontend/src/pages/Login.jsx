@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import BreadCrumb from "../components/BreadCrumb";
 import Container from "../components/Container";
+import CustomInput from "../components/CustomInput";
 import Meta from "../components/Meta";
 
 const Login = () => {
@@ -15,22 +16,14 @@ const Login = () => {
             <div className="auth-card">
               <h3 className="text-center mb-3 ">Login</h3>
               <form action="" className="d-flex flex-column gap-15 ">
-                <div>
-                  <input
-                    type="email"
-                    placeholder="email"
-                    name="email"
-                    className="form-control"
-                  />
-                </div>
-                <div className="mt-2">
-                  <input
-                    type="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Password"
-                  />
-                </div>
+                <CustomInput type="email" placeholder="email" name="email" />
+
+                <CustomInput
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                />
+
                 <div>
                   <Link to="/forgot-password">Forgot Password?</Link>
                 </div>
